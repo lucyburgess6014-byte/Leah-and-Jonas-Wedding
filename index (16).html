@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leah & Jonas — Portland, Oregon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --black: #0a0608;
+      --deep: #130d10;
+      --card: #1a1118;
+      --border: #4a2d3a;
+      --gold: #c9a84c;
+      --gold-light: #e8c96e;
+      --rose: #8b3a52;
+      --rose-light: #b5506e;
+      --cream: #f0e6d0;
+      --muted: #9e8a7a;
+      --text: #d6c9b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--black);
+      color: var(--text);
+      font-family: 'IM Fell English', Georgia, serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── BACKGROUND TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139,58,82,0.12) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234a2d3a' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── DECORATIVE TOP BANNER ── */
+    .top-banner {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 48px 20px 24px;
+    }
+
+    .ornament {
+      color: var(--gold);
+      font-size: 1.4rem;
+      letter-spacing: 0.3em;
+      opacity: 0.8;
+      display: block;
+      margin-bottom: 10px;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    .couple-names {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      color: var(--cream);
+      letter-spacing: 0.06em;
+      line-height: 1.15;
+      text-shadow: 0 0 40px rgba(201,168,76,0.3), 0 2px 8px rgba(0,0,0,0.8);
+      animation: fadeInDown 1.4s ease forwards;
+    }
+
+    .ampersand {
+      color: var(--gold);
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+    }
+
+    .location {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.75rem, 2vw, 1rem);
+      color: var(--gold);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-top: 10px;
+      opacity: 0.85;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .divider-vine {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 22px auto 0;
+      color: var(--rose);
+      font-size: 1.1rem;
+      opacity: 0.7;
+      animation: fadeIn 2.2s ease forwards;
+    }
+    .divider-vine::before,
+    .divider-vine::after {
+      content: '';
+      display: block;
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), var(--gold), var(--border), transparent);
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(10,6,8,0.98) 0%, rgba(19,13,16,0.96) 100%);
+      border-bottom: 1px solid var(--border);
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.6);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 16px 14px;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav button::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; right: 50%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--gold));
+      transition: left 0.3s ease, right 0.3s ease;
+    }
+
+    nav button:hover { color: var(--cream); }
+    nav button:hover::after { left: 10%; right: 10%; }
+    nav button.active { color: var(--gold); }
+    nav button.active::after { left: 10%; right: 10%; }
+
+    nav button + button {
+      border-left: 1px solid rgba(74,45,58,0.4);
+    }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      position: relative;
+      z-index: 5;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    .tab-panel { display: none; animation: fadeInUp 0.5s ease forwards; }
+    .tab-panel.active { display: block; }
+
+    /* ── HOME PAGE ── */
+    .home-hero {
+      text-align: center;
+      padding: 20px 0 60px;
+    }
+
+    .gothic-frame {
+      display: inline-block;
+      position: relative;
+      padding: 50px 60px;
+      margin: 10px auto;
+      background: linear-gradient(135deg, rgba(26,17,24,0.9) 0%, rgba(19,13,16,0.95) 100%);
+      border: 1px solid var(--border);
+      box-shadow:
+        inset 0 0 60px rgba(139,58,82,0.08),
+        0 0 60px rgba(0,0,0,0.8),
+        0 0 0 1px rgba(201,168,76,0.1);
+    }
+
+    /* Corner ornaments */
+    .gothic-frame::before,
+    .gothic-frame::after {
+      content: '✦';
+      position: absolute;
+      color: var(--gold);
+      font-size: 1rem;
+      opacity: 0.6;
+    }
+    .gothic-frame::before { top: 12px; left: 16px; }
+    .gothic-frame::after  { bottom: 12px; right: 16px; }
+
+    .frame-corner-tr,
+    .frame-corner-bl {
+      position: absolute;
+      color: var(--gold);
+      font-size: 1rem;
+      opacity: 0.6;
+    }
+    .frame-corner-tr { top: 12px; right: 16px; }
+    .frame-corner-bl { bottom: 12px; left: 16px; }
+
+    .home-names {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      color: var(--cream);
+      line-height: 1.2;
+      text-shadow: 0 0 30px rgba(201,168,76,0.25);
+      margin-bottom: 8px;
+    }
+
+    .home-location {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+      color: var(--gold);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      margin-top: 14px;
+    }
+
+    .home-tagline {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-top: 30px;
+      line-height: 1.7;
+    }
+
+    /* ── PLACEHOLDER PAGES ── */
+    .page-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      color: var(--cream);
+      text-align: center;
+      margin-bottom: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    .page-ornament {
+      text-align: center;
+      color: var(--gold);
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      opacity: 0.6;
+      letter-spacing: 0.5em;
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(26,17,24,0.85), rgba(19,13,16,0.9));
+      border: 1px solid var(--border);
+      padding: 36px 40px;
+      margin-bottom: 24px;
+      position: relative;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5), inset 0 0 30px rgba(139,58,82,0.04);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--rose), var(--gold), var(--rose), transparent);
+      opacity: 0.5;
+    }
+
+    .card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .placeholder-note {
+      text-align: center;
+      font-style: italic;
+      color: var(--rose);
+      opacity: 0.6;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 30px 20px 50px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--border);
+    }
+
+    footer .gold-heart {
+      color: var(--gold);
+      opacity: 0.5;
+      font-size: 1rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .gothic-frame { padding: 32px 24px; }
+      nav button { font-size: 0.58rem; padding: 14px 9px; letter-spacing: 0.12em; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BANNER -->
+  <header class="top-banner">
+    <span class="ornament">✦ ✦ ✦</span>
+    <h1 class="couple-names">Leah <span class="ampersand">&amp;</span> Jonas</h1>
+    <p class="location">Portland, Oregon</p>
+    <div class="divider-vine">❧</div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-inner">
+      <button class="active" onclick="showTab('home', this)">Home</button>
+      <button onclick="showTab('photos', this)">Photos</button>
+      <button onclick="showTab('schedule', this)">Schedule</button>
+      <button onclick="showTab('travel', this)">Travel</button>
+      <button onclick="showTab('todo', this)">Things To Do</button>
+      <button onclick="showTab('faqs', this)">FAQs</button>
+      <button onclick="showTab('registry', this)">Registry</button>
+      <button onclick="showTab('rsvp', this)">RSVP</button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HOME -->
+    <section id="tab-home" class="tab-panel active">
+      <div class="home-hero">
+        <div class="gothic-frame">
+          <span class="frame-corner-tr">✦</span>
+          <span class="frame-corner-bl">✦</span>
+          <h2 class="home-names">Leah<br><span class="ampersand" style="font-size:0.6em; letter-spacing:0.1em;">&amp;</span><br>Jonas</h2>
+          <p class="home-location">Portland, Oregon</p>
+          <p class="home-tagline">
+            Two souls, bound beneath the autumn sky,<br>
+            amid rose and raven, candlelight and ivy.
+          </p>
+        </div>
+
+        <div style="margin-top: 60px; max-width: 600px; margin-left: auto; margin-right: auto;">
+          <div class="card">
+            <h3>Welcome</h3>
+            <p>
+              We are so delighted to share this moment with you. Please explore the site to find everything you need — from travel arrangements to our gift registry — and do not hesitate to reach out with any questions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHOTOS -->
+    <section id="tab-photos" class="tab-panel">
+      <h2 class="page-title">Photos</h2>
+      <div class="page-ornament">✦ ✦ ✦</div>
+      <div class="card">
+        <h3>Our Gallery</h3>
+        <p>Engagement portraits and cherished memories will be displayed here. Check back soon as we add to our collection.</p>
+      </div>
+      <p class="placeholder-note">— Photos coming soon —</p>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section id="tab-schedule" class="tab-panel">
+      <h2 class="page-title">Schedule</h2>
+      <div class="page-ornament">✦ ✦ ✦</div>
+      <div class="card">
+        <h3>Ceremony</h3>
+        <p>Date, time, and location details to be announced. We look forward to celebrating with you.</p>
+      </div>
+      <div class="card">
+        <h3>Reception</h3>
+        <p>Dinner, dancing, and festivities will follow the ceremony. Full details coming soon.</p>
+      </div>
+    </section>
+
+    <!-- TRAVEL -->
+    <section id="tab-travel" class="tab-panel">
+      <h2 class="page-title">Travel</h2>
+      <div class="page-ornament">✦ ✦ ✦</div>
+      <div class="card">
+        <h3>Getting Here</h3>
+        <p>Portland International Airport (PDX) is the nearest major airport. We recommend arriving a day early to rest and explore the city.</p>
+      </div>
+      <div class="card">
+        <h3>Accommodations</h3>
+        <p>We have reserved a room block at a nearby hotel. Booking details and our recommended rate code will be shared soon.</p>
+      </div>
+    </section>
+
+    <!-- THINGS TO DO -->
+    <section id="tab-todo" class="tab-panel">
+      <h2 class="page-title">Things To Do</h2>
+      <div class="page-ornament">✦ ✦ ✦</div>
+      <div class="card">
+        <h3>Explore Portland</h3>
+        <p>Portland is a city of forests, food, and peculiar charm. Wander Powell's Books, stroll the Japanese Garden, or lose an afternoon in the Pearl District.</p>
+      </div>
+      <div class="card">
+        <h3>Our Favourites</h3>
+        <p>We'll be sharing our personal recommendations for coffee houses, cocktail bars, and hidden corners of the city that we love. Stay tuned.</p>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section id="tab-faqs" class="tab-panel">
+      <h2 class="page-title">FAQs</h2>
+      <div class="page-ornament">✦ ✦ ✦</div>
+      <div class="card">
+        <h3>What is the dress code?</h3>
+        <p>Formal or semi-formal attire. We welcome those who wish to embrace a darker, more gothic palette — deep jewel tones and rich blacks are very much at home here.</p>
+      </div>
+      <div class="card">
+        <h3>Are children welcome?</h3>
+        <p>We love your little ones, but the ceremony and reception are adults-only events. We hope you'll treat the evening as a rare night out.</p>
+      </div>
+      <div class="card">
+        <h3>Will there be parking?</h3>
+        <p>Parking information will be included in your formal invitation. Additional details will be posted here as we finalise logistics.</p>
+      </div>
+    </section>
+
+    <!-- REGISTRY -->
+    <section id="tab-registry" class="tab-panel">
+      <h2 class="page-title">Registry</h2>
+      <div class="page-ornament">✦ ✦ ✦</div>
+      <div class="card">
+        <h3>Our Wishes</h3>
+        <p>Your presence is the greatest gift of all. For those who wish to offer something more, we are registered at a selection of shops we'll be linking here shortly.</p>
+      </div>
+      <p class="placeholder-note">— Registry links coming soon —</p>
+    </section>
+
+    <!-- RSVP -->
+    <section id="tab-rsvp" class="tab-panel">
+      <h2 class="page-title">RSVP</h2>
+      <div class="page-ornament">✦ ✦ ✦</div>
+      <div class="card">
+        <h3>Kindly Reply</h3>
+        <p>We ask that you respond by the date noted on your formal invitation. The RSVP form will appear here once invitations have been sent.</p>
+      </div>
+      <p class="placeholder-note">— RSVP form coming soon —</p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="gold-heart">✦</span>
+    <p>Leah &amp; Jonas &nbsp;·&nbsp; Portland, Oregon</p>
+  </footer>
+
+  <script>
+    function showTab(id, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>
