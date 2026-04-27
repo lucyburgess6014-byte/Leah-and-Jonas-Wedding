@@ -31,16 +31,43 @@
       cursor: default;
     }
 
-    /* ── BACKGROUND TEXTURE ── */
+    /* ── STARFIELD BACKGROUND ── */
     body::before {
       content: '';
       position: fixed; inset: 0;
       background-image:
-        radial-gradient(ellipse 80% 55% at 50% 0%, rgba(244,165,122,0.10) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(18,32,58,0.6) 0%, transparent 60%),
-        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232e4a72' fill-opacity='0.18'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        radial-gradient(ellipse 80% 55% at 50% 0%, rgba(244,165,122,0.13) 0%, transparent 70%),
+        radial-gradient(1px 1px at 15% 12%, rgba(249,196,168,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 72% 8%,  rgba(249,196,168,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 88% 18%, rgba(244,165,122,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 6%  35%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 5%,  rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92% 42%, rgba(249,196,168,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 28% 14%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232e4a72' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
+    }
+
+    /* ── FLOATING STARS (scattered across page) ── */
+    .star-field {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .star-field span {
+      position: absolute;
+      color: var(--peach-light);
+      font-size: 0.55rem;
+      opacity: 0;
+      animation: twinkle var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; transform: scale(0.8); }
+      50%       { opacity: var(--max-op, 0.5); transform: scale(1.1); }
     }
 
     /* ── TOP BANNER ── */
@@ -48,16 +75,33 @@
       position: relative;
       z-index: 10;
       text-align: center;
-      padding: 48px 20px 24px;
+      padding: 52px 20px 28px;
     }
 
-    .ornament {
-      color: var(--peach);
-      font-size: 1.4rem;
-      letter-spacing: 0.3em;
-      opacity: 0.8;
+    /* SVG Sun above names */
+    .sun-motif {
       display: block;
-      margin-bottom: 10px;
+      margin: 0 auto 18px;
+      width: 90px;
+      height: 90px;
+      animation: sunSpin 40s linear infinite;
+      opacity: 0.85;
+    }
+    @keyframes sunSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .star-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: var(--peach);
+      font-size: 0.9rem;
+      letter-spacing: 0.5em;
+      opacity: 0.75;
       animation: fadeIn 1.2s ease forwards;
     }
 
@@ -67,7 +111,7 @@
       color: var(--cream);
       letter-spacing: 0.06em;
       line-height: 1.15;
-      text-shadow: 0 0 40px rgba(244,165,122,0.28), 0 2px 8px rgba(0,0,0,0.6);
+      text-shadow: 0 0 40px rgba(244,165,122,0.3), 0 2px 8px rgba(0,0,0,0.6);
       animation: fadeInDown 1.4s ease forwards;
     }
 
@@ -88,22 +132,22 @@
       animation: fadeIn 2s ease forwards;
     }
 
-    .divider-vine {
+    .divider-star {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
-      margin: 22px auto 0;
+      gap: 10px;
+      margin: 20px auto 0;
       color: var(--blush);
-      font-size: 1.1rem;
-      opacity: 0.7;
+      font-size: 0.85rem;
+      opacity: 0.75;
       animation: fadeIn 2.2s ease forwards;
     }
-    .divider-vine::before,
-    .divider-vine::after {
+    .divider-star::before,
+    .divider-star::after {
       content: '';
       display: block;
-      width: 120px;
+      width: 100px;
       height: 1px;
       background: linear-gradient(to right, transparent, var(--navy-border), var(--peach), var(--navy-border), transparent);
     }
@@ -156,10 +200,7 @@
     nav button:hover::after { left: 10%; right: 10%; }
     nav button.active { color: var(--peach); }
     nav button.active::after { left: 10%; right: 10%; }
-
-    nav button + button {
-      border-left: 1px solid rgba(46,74,114,0.45);
-    }
+    nav button + button { border-left: 1px solid rgba(46,74,114,0.45); }
 
     /* ── MAIN CONTENT ── */
     main {
@@ -192,26 +233,35 @@
         0 0 0 1px rgba(244,165,122,0.08);
     }
 
+    /* Corner stars */
     .gothic-frame::before,
     .gothic-frame::after {
-      content: '✦';
+      content: '★';
       position: absolute;
       color: var(--peach);
-      font-size: 1rem;
-      opacity: 0.6;
+      font-size: 0.85rem;
+      opacity: 0.55;
     }
     .gothic-frame::before { top: 12px; left: 16px; }
     .gothic-frame::after  { bottom: 12px; right: 16px; }
 
-    .frame-corner-tr,
-    .frame-corner-bl {
+    .frame-corner-tr, .frame-corner-bl {
       position: absolute;
       color: var(--peach);
-      font-size: 1rem;
-      opacity: 0.6;
+      font-size: 0.85rem;
+      opacity: 0.55;
     }
     .frame-corner-tr { top: 12px; right: 16px; }
     .frame-corner-bl { bottom: 12px; left: 16px; }
+
+    /* Mini sun inside frame */
+    .frame-sun {
+      display: block;
+      margin: 0 auto 14px;
+      width: 48px;
+      height: 48px;
+      opacity: 0.7;
+    }
 
     .home-names {
       font-family: 'Cinzel Decorative', serif;
@@ -236,11 +286,32 @@
       font-style: italic;
       font-size: 1.05rem;
       color: var(--muted);
-      margin-top: 30px;
+      margin-top: 28px;
       line-height: 1.7;
     }
 
-    /* ── PLACEHOLDER PAGES ── */
+    /* star strip between frame and cards */
+    .star-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 44px auto 44px;
+      color: var(--peach);
+      font-size: 0.8rem;
+      opacity: 0.5;
+      letter-spacing: 0.4em;
+    }
+    .star-strip::before,
+    .star-strip::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--navy-border), var(--peach-light), var(--navy-border), transparent);
+    }
+
+    /* ── CARDS ── */
     .page-title {
       font-family: 'Cinzel Decorative', serif;
       font-size: clamp(1.4rem, 4vw, 2.2rem);
@@ -253,10 +324,10 @@
     .page-ornament {
       text-align: center;
       color: var(--peach);
-      font-size: 1.2rem;
+      font-size: 1rem;
       margin-bottom: 40px;
-      opacity: 0.6;
-      letter-spacing: 0.5em;
+      opacity: 0.65;
+      letter-spacing: 0.6em;
     }
 
     .card {
@@ -277,6 +348,16 @@
       opacity: 0.55;
     }
 
+    /* star in card top-right corner */
+    .card::after {
+      content: '✦';
+      position: absolute;
+      top: 10px; right: 14px;
+      color: var(--peach);
+      font-size: 0.65rem;
+      opacity: 0.35;
+    }
+
     .card h3 {
       font-family: 'Cinzel', serif;
       font-size: 0.8rem;
@@ -286,10 +367,28 @@
       margin-bottom: 14px;
     }
 
-    .card p {
+    .card p, .card address {
       color: var(--muted);
       line-height: 1.8;
       font-size: 1rem;
+      font-style: normal;
+    }
+
+    .card a {
+      color: var(--peach-light);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(244,165,122,0.3);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .card a:hover { color: var(--cream); border-color: var(--peach); }
+
+    .venue-label {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      color: var(--peach-light);
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+      display: block;
     }
 
     .placeholder-note {
@@ -310,6 +409,17 @@
       border-top: 1px solid var(--navy-border);
     }
 
+    .footer-stars {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      color: var(--peach);
+      font-size: 0.75rem;
+      opacity: 0.4;
+      letter-spacing: 0.4em;
+    }
+
     footer p {
       font-family: 'Cinzel', serif;
       font-size: 0.65rem;
@@ -318,195 +428,265 @@
       color: var(--navy-border);
     }
 
-    footer .peach-heart {
-      color: var(--peach);
-      opacity: 0.45;
-      font-size: 1rem;
-      display: block;
-      margin-bottom: 10px;
-    }
-
     /* ── ANIMATIONS ── */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeIn      { from { opacity:0 } to { opacity:1 } }
+    @keyframes fadeInDown  { from { opacity:0; transform:translateY(-20px) } to { opacity:1; transform:translateY(0) } }
+    @keyframes fadeInUp    { from { opacity:0; transform:translateY(16px)  } to { opacity:1; transform:translateY(0) } }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .gothic-frame { padding: 32px 24px; }
+      .sun-motif { width: 68px; height: 68px; }
       nav button { font-size: 0.58rem; padding: 14px 9px; letter-spacing: 0.12em; }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP BANNER -->
-  <header class="top-banner">
-    <span class="ornament">✦ ✦ ✦</span>
-    <h1 class="couple-names">Leah <span class="ampersand">&amp;</span> Jonas</h1>
-    <p class="location">Portland, Oregon</p>
-    <div class="divider-vine">❧</div>
-  </header>
+<!-- Scattered twinkling stars -->
+<div class="star-field" aria-hidden="true">
+  <span style="top:7%;  left:4%;  --dur:3.8s; --delay:0.2s;  --max-op:0.55;">✦</span>
+  <span style="top:12%; left:91%; --dur:5.1s; --delay:1.1s;  --max-op:0.45;">★</span>
+  <span style="top:3%;  left:55%; --dur:4.2s; --delay:0.7s;  --max-op:0.4;">✦</span>
+  <span style="top:18%; left:78%; --dur:6s;   --delay:2s;    --max-op:0.5;">✦</span>
+  <span style="top:22%; left:20%; --dur:3.4s; --delay:0.4s;  --max-op:0.4;">★</span>
+  <span style="top:30%; left:96%; --dur:5.5s; --delay:1.6s;  --max-op:0.35;">✦</span>
+  <span style="top:38%; left:2%;  --dur:4.7s; --delay:0.9s;  --max-op:0.4;">★</span>
+  <span style="top:50%; left:93%; --dur:3.9s; --delay:2.3s;  --max-op:0.3;">✦</span>
+  <span style="top:62%; left:5%;  --dur:5.2s; --delay:1.4s;  --max-op:0.35;">✦</span>
+  <span style="top:70%; left:88%; --dur:4.4s; --delay:0.6s;  --max-op:0.4;">★</span>
+  <span style="top:80%; left:10%; --dur:6.1s; --delay:3.1s;  --max-op:0.3;">✦</span>
+  <span style="top:88%; left:80%; --dur:3.6s; --delay:1.8s;  --max-op:0.45;">✦</span>
+  <span style="top:94%; left:45%; --dur:5.8s; --delay:0.3s;  --max-op:0.3;">★</span>
+</div>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-inner">
-      <button class="active" onclick="showTab('home', this)">Home</button>
-      <button onclick="showTab('photos', this)">Photos</button>
-      <button onclick="showTab('schedule', this)">Schedule</button>
-      <button onclick="showTab('travel', this)">Travel</button>
-      <button onclick="showTab('todo', this)">Things To Do</button>
-      <button onclick="showTab('faqs', this)">FAQs</button>
-      <button onclick="showTab('registry', this)">Registry</button>
-      <button onclick="showTab('rsvp', this)">RSVP</button>
+<!-- TOP BANNER -->
+<header class="top-banner">
+
+  <!-- Rotating sun SVG -->
+  <svg class="sun-motif" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- rays -->
+    <g stroke="#f4a57a" stroke-width="2" stroke-linecap="round" opacity="0.85">
+      <line x1="50" y1="4"  x2="50" y2="15"/>
+      <line x1="50" y1="85" x2="50" y2="96"/>
+      <line x1="4"  y1="50" x2="15" y2="50"/>
+      <line x1="85" y1="50" x2="96" y2="50"/>
+      <line x1="15.1" y1="15.1" x2="22.8" y2="22.8"/>
+      <line x1="77.2" y1="77.2" x2="84.9" y2="84.9"/>
+      <line x1="84.9" y1="15.1" x2="77.2" y2="22.8"/>
+      <line x1="22.8" y1="77.2" x2="15.1" y2="84.9"/>
+      <!-- half-rays -->
+      <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(22.5,50,50)"/>
+      <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(67.5,50,50)"/>
+      <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(112.5,50,50)"/>
+      <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(157.5,50,50)"/>
+      <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(202.5,50,50)"/>
+      <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(247.5,50,50)"/>
+      <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(292.5,50,50)"/>
+      <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(337.5,50,50)"/>
+    </g>
+    <!-- face circle -->
+    <circle cx="50" cy="50" r="18" fill="none" stroke="#f9c4a8" stroke-width="1.5" opacity="0.9"/>
+    <circle cx="50" cy="50" r="13" fill="rgba(244,165,122,0.15)" stroke="#f4a57a" stroke-width="1"/>
+    <!-- small star center -->
+    <text x="50" y="55" text-anchor="middle" font-size="12" fill="#f9c4a8" opacity="0.9" font-family="serif">✦</text>
+  </svg>
+
+  <div class="star-row">★ ✦ ★ ✦ ★</div>
+  <h1 class="couple-names">Leah <span class="ampersand">&amp;</span> Jonas</h1>
+  <p class="location">Portland, Oregon</p>
+  <div class="divider-star">☀ ✦ ☀</div>
+</header>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-inner">
+    <button class="active" onclick="showTab('home',this)">Home</button>
+    <button onclick="showTab('photos',this)">Photos</button>
+    <button onclick="showTab('schedule',this)">Schedule</button>
+    <button onclick="showTab('travel',this)">Travel</button>
+    <button onclick="showTab('todo',this)">Things To Do</button>
+    <button onclick="showTab('faqs',this)">FAQs</button>
+    <button onclick="showTab('registry',this)">Registry</button>
+    <button onclick="showTab('rsvp',this)">RSVP</button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HOME -->
+  <section id="tab-home" class="tab-panel active">
+    <div class="home-hero">
+      <div class="gothic-frame">
+        <span class="frame-corner-tr">★</span>
+        <span class="frame-corner-bl">★</span>
+
+        <!-- Mini sun in frame -->
+        <svg class="frame-sun" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#f4a57a" stroke-width="2.5" stroke-linecap="round" opacity="0.8">
+            <line x1="50" y1="6"  x2="50" y2="18"/>
+            <line x1="50" y1="82" x2="50" y2="94"/>
+            <line x1="6"  y1="50" x2="18" y2="50"/>
+            <line x1="82" y1="50" x2="94" y2="50"/>
+            <line x1="17.6" y1="17.6" x2="26.5" y2="26.5"/>
+            <line x1="73.5" y1="73.5" x2="82.4" y2="82.4"/>
+            <line x1="82.4" y1="17.6" x2="73.5" y2="26.5"/>
+            <line x1="26.5" y1="73.5" x2="17.6" y2="82.4"/>
+          </g>
+          <circle cx="50" cy="50" r="16" fill="none" stroke="#f9c4a8" stroke-width="1.5" opacity="0.85"/>
+          <circle cx="50" cy="50" r="10" fill="rgba(244,165,122,0.2)" stroke="#f4a57a" stroke-width="1"/>
+        </svg>
+
+        <h2 class="home-names">Leah<br><span class="ampersand" style="font-size:0.6em;letter-spacing:0.1em;">&amp;</span><br>Jonas</h2>
+        <p class="home-location">McMenamins Edgefield · Troutdale, Oregon</p>
+        <p class="home-tagline">
+          Two souls, bound beneath the open sky,<br>
+          among the gardens, stars, and candlelight.
+        </p>
+      </div>
+
+      <div class="star-strip">★ ✦ ☀ ✦ ★</div>
+
+      <div style="max-width:600px; margin:0 auto;">
+        <div class="card">
+          <h3>Welcome</h3>
+          <p>We are so delighted to share this moment with you. Please explore the site to find everything you need — from travel arrangements to our gift registry — and do not hesitate to reach out with any questions.</p>
+        </div>
+
+        <div class="card">
+          <h3>The Venue</h3>
+          <span class="venue-label">McMenamins Edgefield</span>
+          <address>
+            2126 SW Halsey St, Troutdale, OR 97060<br>
+            <a href="https://www.mcmenamins.com/edgefield" target="_blank" rel="noopener">mcmenamins.com/edgefield</a>
+          </address>
+          <p style="margin-top:12px;">Nestled on 74 acres of lush gardens, historic buildings, and winding pathways, McMenamins Edgefield is a place apart — where history, art, and celebration come together beautifully.</p>
+        </div>
+      </div>
     </div>
-  </nav>
+  </section>
 
-  <!-- MAIN -->
-  <main>
+  <!-- PHOTOS -->
+  <section id="tab-photos" class="tab-panel">
+    <h2 class="page-title">Photos</h2>
+    <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
+    <div class="card">
+      <h3>Our Gallery</h3>
+      <p>Engagement portraits and cherished memories will be displayed here. Check back soon as we add to our collection.</p>
+    </div>
+    <p class="placeholder-note">— Photos coming soon —</p>
+  </section>
 
-    <!-- HOME -->
-    <section id="tab-home" class="tab-panel active">
-      <div class="home-hero">
-        <div class="gothic-frame">
-          <span class="frame-corner-tr">✦</span>
-          <span class="frame-corner-bl">✦</span>
-          <h2 class="home-names">Leah<br><span class="ampersand" style="font-size:0.6em; letter-spacing:0.1em;">&amp;</span><br>Jonas</h2>
-          <p class="home-location">Portland, Oregon</p>
-          <p class="home-tagline">
-            Two souls, bound beneath the autumn sky,<br>
-            amid rose and raven, candlelight and ivy.
-          </p>
-        </div>
+  <!-- SCHEDULE -->
+  <section id="tab-schedule" class="tab-panel">
+    <h2 class="page-title">Schedule</h2>
+    <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
+    <div class="card">
+      <h3>Ceremony</h3>
+      <p>Date, time, and location details to be announced. We look forward to celebrating with you at McMenamins Edgefield.</p>
+    </div>
+    <div class="card">
+      <h3>Reception</h3>
+      <p>Dinner, dancing, and festivities will follow the ceremony in the grounds of Edgefield. Full details coming soon.</p>
+    </div>
+  </section>
 
-        <div style="margin-top: 60px; max-width: 600px; margin-left: auto; margin-right: auto;">
-          <div class="card">
-            <h3>Welcome</h3>
-            <p>
-              We are so delighted to share this moment with you. Please explore the site to find everything you need — from travel arrangements to our gift registry — and do not hesitate to reach out with any questions.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- TRAVEL -->
+  <section id="tab-travel" class="tab-panel">
+    <h2 class="page-title">Travel</h2>
+    <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
+    <div class="card">
+      <h3>Getting Here</h3>
+      <p>McMenamins Edgefield is located at 2126 SW Halsey St, Troutdale, OR — about 30 minutes east of downtown Portland. Portland International Airport (PDX) is the nearest major airport, roughly 15 minutes away.</p>
+    </div>
+    <div class="card">
+      <h3>Staying On-Site</h3>
+      <p>Edgefield has its own hotel on the property — a beautiful historic manor. We highly recommend booking a room to make a full weekend of it. We have reserved a room block; booking details and rate code will be shared soon.</p>
+    </div>
+    <div class="card">
+      <h3>Parking</h3>
+      <p>Complimentary parking is available on-site at Edgefield. Additional details will be posted here as we finalise logistics.</p>
+    </div>
+  </section>
 
-    <!-- PHOTOS -->
-    <section id="tab-photos" class="tab-panel">
-      <h2 class="page-title">Photos</h2>
-      <div class="page-ornament">✦ ✦ ✦</div>
-      <div class="card">
-        <h3>Our Gallery</h3>
-        <p>Engagement portraits and cherished memories will be displayed here. Check back soon as we add to our collection.</p>
-      </div>
-      <p class="placeholder-note">— Photos coming soon —</p>
-    </section>
+  <!-- THINGS TO DO -->
+  <section id="tab-todo" class="tab-panel">
+    <h2 class="page-title">Things To Do</h2>
+    <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
+    <div class="card">
+      <h3>Edgefield Grounds</h3>
+      <p>Wander the 74-acre estate — visit the winery, brewery, distillery, soaking pool, and cinema. There is no shortage of ways to spend a sunny Oregon afternoon on property.</p>
+    </div>
+    <div class="card">
+      <h3>Explore the Columbia River Gorge</h3>
+      <p>Just minutes away, the Columbia River Gorge offers breathtaking hikes, waterfalls, and scenic overlooks. Crown Point and Multnomah Falls are not to be missed.</p>
+    </div>
+    <div class="card">
+      <h3>Explore Portland</h3>
+      <p>Portland is a city of forests, food, and peculiar charm. Wander Powell's Books, stroll the Japanese Garden, or lose an afternoon in the Pearl District.</p>
+    </div>
+  </section>
 
-    <!-- SCHEDULE -->
-    <section id="tab-schedule" class="tab-panel">
-      <h2 class="page-title">Schedule</h2>
-      <div class="page-ornament">✦ ✦ ✦</div>
-      <div class="card">
-        <h3>Ceremony</h3>
-        <p>Date, time, and location details to be announced. We look forward to celebrating with you.</p>
-      </div>
-      <div class="card">
-        <h3>Reception</h3>
-        <p>Dinner, dancing, and festivities will follow the ceremony. Full details coming soon.</p>
-      </div>
-    </section>
+  <!-- FAQs -->
+  <section id="tab-faqs" class="tab-panel">
+    <h2 class="page-title">FAQs</h2>
+    <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
+    <div class="card">
+      <h3>What is the dress code?</h3>
+      <p>Formal or semi-formal attire. We welcome soft, romantic tones — blush, peach, navy, and ivory are all very much at home here.</p>
+    </div>
+    <div class="card">
+      <h3>Are children welcome?</h3>
+      <p>We love your little ones, but the ceremony and reception are adults-only events. We hope you'll treat the evening as a rare night out.</p>
+    </div>
+    <div class="card">
+      <h3>Will there be parking?</h3>
+      <p>Yes — complimentary parking is available on-site at McMenamins Edgefield.</p>
+    </div>
+    <div class="card">
+      <h3>Can I stay at Edgefield?</h3>
+      <p>Absolutely, and we encourage it! The historic hotel on property is a wonderful experience. Watch for our room block details in your formal invitation.</p>
+    </div>
+  </section>
 
-    <!-- TRAVEL -->
-    <section id="tab-travel" class="tab-panel">
-      <h2 class="page-title">Travel</h2>
-      <div class="page-ornament">✦ ✦ ✦</div>
-      <div class="card">
-        <h3>Getting Here</h3>
-        <p>Portland International Airport (PDX) is the nearest major airport. We recommend arriving a day early to rest and explore the city.</p>
-      </div>
-      <div class="card">
-        <h3>Accommodations</h3>
-        <p>We have reserved a room block at a nearby hotel. Booking details and our recommended rate code will be shared soon.</p>
-      </div>
-    </section>
+  <!-- REGISTRY -->
+  <section id="tab-registry" class="tab-panel">
+    <h2 class="page-title">Registry</h2>
+    <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
+    <div class="card">
+      <h3>Our Wishes</h3>
+      <p>Your presence is the greatest gift of all. For those who wish to offer something more, we are registered at a selection of shops we'll be linking here shortly.</p>
+    </div>
+    <p class="placeholder-note">— Registry links coming soon —</p>
+  </section>
 
-    <!-- THINGS TO DO -->
-    <section id="tab-todo" class="tab-panel">
-      <h2 class="page-title">Things To Do</h2>
-      <div class="page-ornament">✦ ✦ ✦</div>
-      <div class="card">
-        <h3>Explore Portland</h3>
-        <p>Portland is a city of forests, food, and peculiar charm. Wander Powell's Books, stroll the Japanese Garden, or lose an afternoon in the Pearl District.</p>
-      </div>
-      <div class="card">
-        <h3>Our Favourites</h3>
-        <p>We'll be sharing our personal recommendations for coffee houses, cocktail bars, and hidden corners of the city that we love. Stay tuned.</p>
-      </div>
-    </section>
+  <!-- RSVP -->
+  <section id="tab-rsvp" class="tab-panel">
+    <h2 class="page-title">RSVP</h2>
+    <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
+    <div class="card">
+      <h3>Kindly Reply</h3>
+      <p>We ask that you respond by the date noted on your formal invitation. The RSVP form will appear here once invitations have been sent.</p>
+    </div>
+    <p class="placeholder-note">— RSVP form coming soon —</p>
+  </section>
 
-    <!-- FAQs -->
-    <section id="tab-faqs" class="tab-panel">
-      <h2 class="page-title">FAQs</h2>
-      <div class="page-ornament">✦ ✦ ✦</div>
-      <div class="card">
-        <h3>What is the dress code?</h3>
-        <p>Formal or semi-formal attire. We welcome those who wish to embrace soft, romantic tones — blush, peach, navy, and ivory are all very much at home here.</p>
-      </div>
-      <div class="card">
-        <h3>Are children welcome?</h3>
-        <p>We love your little ones, but the ceremony and reception are adults-only events. We hope you'll treat the evening as a rare night out.</p>
-      </div>
-      <div class="card">
-        <h3>Will there be parking?</h3>
-        <p>Parking information will be included in your formal invitation. Additional details will be posted here as we finalise logistics.</p>
-      </div>
-    </section>
+</main>
 
-    <!-- REGISTRY -->
-    <section id="tab-registry" class="tab-panel">
-      <h2 class="page-title">Registry</h2>
-      <div class="page-ornament">✦ ✦ ✦</div>
-      <div class="card">
-        <h3>Our Wishes</h3>
-        <p>Your presence is the greatest gift of all. For those who wish to offer something more, we are registered at a selection of shops we'll be linking here shortly.</p>
-      </div>
-      <p class="placeholder-note">— Registry links coming soon —</p>
-    </section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-stars">★ ✦ ☀ ✦ ★</div>
+  <p>Leah &amp; Jonas &nbsp;·&nbsp; McMenamins Edgefield &nbsp;·&nbsp; Troutdale, Oregon</p>
+</footer>
 
-    <!-- RSVP -->
-    <section id="tab-rsvp" class="tab-panel">
-      <h2 class="page-title">RSVP</h2>
-      <div class="page-ornament">✦ ✦ ✦</div>
-      <div class="card">
-        <h3>Kindly Reply</h3>
-        <p>We ask that you respond by the date noted on your formal invitation. The RSVP form will appear here once invitations have been sent.</p>
-      </div>
-      <p class="placeholder-note">— RSVP form coming soon —</p>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <span class="peach-heart">✦</span>
-    <p>Leah &amp; Jonas &nbsp;·&nbsp; Portland, Oregon</p>
-  </footer>
-
-  <script>
-    function showTab(id, btn) {
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-      document.getElementById('tab-' + id).classList.add('active');
-      btn.classList.add('active');
-    }
-  </script>
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
 </body>
 </html>
