@@ -68,14 +68,32 @@
 
     .star-row { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:14px; color:var(--peach); font-size:0.9rem; letter-spacing:0.5em; opacity:0.75; animation:fadeIn 1.2s ease forwards; }
 
-    .couple-names { font-family:'Cinzel Decorative',serif; font-size:clamp(2.2rem,6vw,4.2rem); color:var(--cream); letter-spacing:0.06em; line-height:1.15; text-shadow:0 0 40px rgba(244,165,122,0.3),0 2px 8px rgba(0,0,0,0.6); animation:fadeInDown 1.4s ease forwards; }
+    .names-layout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      color: var(--cream);
+      letter-spacing: 0.06em;
+      line-height: 1.15;
+      text-shadow: 0 0 40px rgba(244,165,122,0.3), 0 2px 8px rgba(0,0,0,0.6);
+      animation: fadeInDown 1.4s ease forwards;
+    }
+    .name-side {
+      display: inline-block;
+      width: clamp(120px, 20vw, 220px);
+    }
+    .name-side:first-child { text-align: right; }
+    .name-side:last-child  { text-align: left; }
 
-    .ampersand { color:var(--peach); font-family:'IM Fell English',serif; font-style:italic; }
+    .ampersand { color:var(--peach); font-family:'IM Fell English',serif; font-style:italic; font-size: 0.75em; flex-shrink: 0; }
 
     .location { font-family:'Cinzel',serif; font-size:clamp(0.75rem,2vw,1rem); color:var(--peach-light); letter-spacing:0.35em; text-transform:uppercase; margin-top:10px; opacity:0.85; animation:fadeIn 2s ease forwards; }
 
-    .divider-star { display:flex; align-items:center; justify-content:center; gap:10px; margin:20px auto 0; color:var(--blush); font-size:0.85rem; opacity:0.75; animation:fadeIn 2.2s ease forwards; }
-    .divider-star::before,.divider-star::after { content:''; display:block; width:100px; height:1px; background:linear-gradient(to right,transparent,var(--navy-border),var(--peach),var(--navy-border),transparent); }
+    .divider-star { display:flex; align-items:center; justify-content:center; gap:10px; margin:20px auto 0; color:var(--blush); font-size:0.85rem; opacity:0.75; animation:fadeIn 2.2s ease forwards; letter-spacing:0; text-indent:0; }
+    .divider-star::before,.divider-star::after { content:''; display:block; width:80px; height:1px; background:linear-gradient(to right,transparent,var(--navy-border),var(--peach),var(--navy-border),transparent); flex-shrink:0; }
 
     /* ── NAV ── */
     nav { position:sticky; top:0; z-index:100; background:linear-gradient(180deg,rgba(11,18,32,0.98) 0%,rgba(18,32,58,0.97) 100%); border-bottom:1px solid var(--navy-border); border-top:1px solid var(--navy-border); backdrop-filter:blur(10px); box-shadow:0 4px 30px rgba(0,0,0,0.5); }
@@ -241,8 +259,12 @@
     <text x="50" y="55" text-anchor="middle" font-size="12" fill="#f9c4a8" opacity="0.9" font-family="serif">✦</text>
   </svg>
   <div class="star-row">★ ✦ ★ ✦ ★</div>
-  <h1 class="couple-names">Leah <span class="ampersand">&amp;</span> Jonas</h1>
-  <div class="divider-star">☀ ✦ ☀</div>
+  <h1 class="names-layout">
+    <span class="name-side">Leah</span>
+    <span class="ampersand">&amp;</span>
+    <span class="name-side">Jonas</span>
+  </h1>
+  <div class="divider-star"><span>☀</span><span>✦</span><span>☀</span></div>
 </header>
 
 <nav>
