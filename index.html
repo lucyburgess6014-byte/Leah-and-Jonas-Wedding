@@ -31,7 +31,6 @@
       cursor: default;
     }
 
-    /* ── STARFIELD BACKGROUND ── */
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -43,429 +42,180 @@
         radial-gradient(1.5px 1.5px at 88% 18%, rgba(244,165,122,0.6) 0%, transparent 100%),
         radial-gradient(1px 1px at 6%  35%, rgba(255,255,255,0.3) 0%, transparent 100%),
         radial-gradient(1px 1px at 55% 5%,  rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 92% 42%, rgba(249,196,168,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 28% 14%, rgba(255,255,255,0.35) 0%, transparent 100%),
         url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232e4a72' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 0;
     }
 
-    /* ── FLOATING STARS (scattered across page) ── */
     .star-field {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      overflow: hidden;
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 1; overflow: hidden;
     }
     .star-field span {
-      position: absolute;
-      color: var(--peach-light);
-      font-size: 0.55rem;
-      opacity: 0;
-      animation: twinkle var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
+      position: absolute; color: var(--peach-light); font-size: 0.55rem;
+      opacity: 0; animation: twinkle var(--dur,4s) ease-in-out var(--delay,0s) infinite;
     }
     @keyframes twinkle {
-      0%, 100% { opacity: 0; transform: scale(0.8); }
-      50%       { opacity: var(--max-op, 0.5); transform: scale(1.1); }
+      0%,100% { opacity:0; transform:scale(0.8); }
+      50%      { opacity:var(--max-op,0.5); transform:scale(1.1); }
     }
 
-    /* ── TOP BANNER ── */
-    .top-banner {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      padding: 52px 20px 28px;
-    }
+    /* ── BANNER ── */
+    .top-banner { position:relative; z-index:10; text-align:center; padding:52px 20px 28px; }
 
-    /* SVG Sun above names */
-    .sun-motif {
-      display: block;
-      margin: 0 auto 18px;
-      width: 90px;
-      height: 90px;
-      animation: sunSpin 40s linear infinite;
-      opacity: 0.85;
-    }
-    @keyframes sunSpin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
+    .sun-motif { display:block; margin:0 auto 18px; width:90px; height:90px; animation:sunSpin 40s linear infinite; opacity:0.85; }
+    @keyframes sunSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 
-    .star-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 14px;
-      color: var(--peach);
-      font-size: 0.9rem;
-      letter-spacing: 0.5em;
-      opacity: 0.75;
-      animation: fadeIn 1.2s ease forwards;
-    }
+    .star-row { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:14px; color:var(--peach); font-size:0.9rem; letter-spacing:0.5em; opacity:0.75; animation:fadeIn 1.2s ease forwards; }
 
-    .couple-names {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(2.2rem, 6vw, 4.2rem);
-      color: var(--cream);
-      letter-spacing: 0.06em;
-      line-height: 1.15;
-      text-shadow: 0 0 40px rgba(244,165,122,0.3), 0 2px 8px rgba(0,0,0,0.6);
-      animation: fadeInDown 1.4s ease forwards;
-    }
+    .couple-names { font-family:'Cinzel Decorative',serif; font-size:clamp(2.2rem,6vw,4.2rem); color:var(--cream); letter-spacing:0.06em; line-height:1.15; text-shadow:0 0 40px rgba(244,165,122,0.3),0 2px 8px rgba(0,0,0,0.6); animation:fadeInDown 1.4s ease forwards; }
 
-    .ampersand {
-      color: var(--peach);
-      font-family: 'IM Fell English', serif;
+    .ampersand { color:var(--peach); font-family:'IM Fell English',serif; font-style:italic; }
+
+    .location { font-family:'Cinzel',serif; font-size:clamp(0.75rem,2vw,1rem); color:var(--peach-light); letter-spacing:0.35em; text-transform:uppercase; margin-top:10px; opacity:0.85; animation:fadeIn 2s ease forwards; }
+
+    .divider-star { display:flex; align-items:center; justify-content:center; gap:10px; margin:20px auto 0; color:var(--blush); font-size:0.85rem; opacity:0.75; animation:fadeIn 2.2s ease forwards; }
+    .divider-star::before,.divider-star::after { content:''; display:block; width:100px; height:1px; background:linear-gradient(to right,transparent,var(--navy-border),var(--peach),var(--navy-border),transparent); }
+
+    /* ── NAV ── */
+    nav { position:sticky; top:0; z-index:100; background:linear-gradient(180deg,rgba(11,18,32,0.98) 0%,rgba(18,32,58,0.97) 100%); border-bottom:1px solid var(--navy-border); border-top:1px solid var(--navy-border); backdrop-filter:blur(10px); box-shadow:0 4px 30px rgba(0,0,0,0.5); }
+    .nav-inner { display:flex; justify-content:center; flex-wrap:wrap; max-width:1200px; margin:0 auto; }
+    nav button { background:none; border:none; color:var(--muted); font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; padding:15px 12px; cursor:pointer; position:relative; transition:color 0.3s ease; }
+    nav button::after { content:''; position:absolute; bottom:0; left:50%; right:50%; height:2px; background:linear-gradient(90deg,var(--blush),var(--peach-light)); transition:left 0.3s ease,right 0.3s ease; }
+    nav button:hover { color:var(--cream); }
+    nav button:hover::after { left:10%; right:10%; }
+    nav button.active { color:var(--peach); }
+    nav button.active::after { left:10%; right:10%; }
+    nav button+button { border-left:1px solid rgba(46,74,114,0.45); }
+
+    /* ── MAIN ── */
+    main { position:relative; z-index:5; max-width:900px; margin:0 auto; padding:60px 24px 80px; }
+    .tab-panel { display:none; animation:fadeInUp 0.5s ease forwards; }
+    .tab-panel.active { display:block; }
+
+    /* ── HOME ── */
+    .home-hero { text-align:center; padding:20px 0 60px; }
+    .gothic-frame { display:inline-block; position:relative; padding:50px 60px; margin:10px auto; background:linear-gradient(135deg,rgba(18,32,58,0.92) 0%,rgba(11,18,32,0.96) 100%); border:1px solid var(--navy-border); box-shadow:inset 0 0 60px rgba(244,165,122,0.06),0 0 60px rgba(0,0,0,0.7),0 0 0 1px rgba(244,165,122,0.08); }
+    .gothic-frame::before,.gothic-frame::after { content:'★'; position:absolute; color:var(--peach); font-size:0.85rem; opacity:0.55; }
+    .gothic-frame::before { top:12px; left:16px; }
+    .gothic-frame::after  { bottom:12px; right:16px; }
+    .frame-corner-tr,.frame-corner-bl { position:absolute; color:var(--peach); font-size:0.85rem; opacity:0.55; }
+    .frame-corner-tr { top:12px; right:16px; }
+    .frame-corner-bl { bottom:12px; left:16px; }
+    .frame-sun { display:block; margin:0 auto 14px; width:48px; height:48px; opacity:0.7; }
+    .home-names { font-family:'Cinzel Decorative',serif; font-size:clamp(2rem,6vw,3.8rem); color:var(--cream); line-height:1.2; text-shadow:0 0 30px rgba(244,165,122,0.2); margin-bottom:8px; }
+    .home-location { font-family:'Cinzel',serif; font-size:clamp(0.8rem,2.5vw,1.1rem); color:var(--peach-light); letter-spacing:0.4em; text-transform:uppercase; margin-top:14px; }
+    .home-tagline { font-family:'IM Fell English',serif; font-style:italic; font-size:1.05rem; color:var(--muted); margin-top:28px; line-height:1.7; }
+    .star-strip { display:flex; align-items:center; justify-content:center; gap:12px; margin:44px auto 44px; color:var(--peach); font-size:0.8rem; opacity:0.5; letter-spacing:0.4em; }
+    .star-strip::before,.star-strip::after { content:''; display:block; width:80px; height:1px; background:linear-gradient(to right,transparent,var(--navy-border),var(--peach-light),var(--navy-border),transparent); }
+
+    /* ── NOTICE BANNER ── */
+    .notice-banner {
+      background: linear-gradient(135deg, rgba(244,165,122,0.1), rgba(18,32,58,0.6));
+      border: 1px solid rgba(244,165,122,0.3);
+      border-left: 3px solid var(--peach);
+      padding: 18px 24px;
+      margin-bottom: 28px;
       font-style: italic;
-    }
-
-    .location {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(0.75rem, 2vw, 1rem);
       color: var(--peach-light);
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      margin-top: 10px;
-      opacity: 0.85;
-      animation: fadeIn 2s ease forwards;
-    }
-
-    .divider-star {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px auto 0;
-      color: var(--blush);
-      font-size: 0.85rem;
-      opacity: 0.75;
-      animation: fadeIn 2.2s ease forwards;
-    }
-    .divider-star::before,
-    .divider-star::after {
-      content: '';
-      display: block;
-      width: 100px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--navy-border), var(--peach), var(--navy-border), transparent);
-    }
-
-    /* ── NAVIGATION ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: linear-gradient(180deg, rgba(11,18,32,0.98) 0%, rgba(18,32,58,0.97) 100%);
-      border-bottom: 1px solid var(--navy-border);
-      border-top: 1px solid var(--navy-border);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    }
-
-    .nav-inner {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    nav button {
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-family: 'Cinzel', serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 16px 14px;
-      cursor: pointer;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-
-    nav button::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 50%; right: 50%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--blush), var(--peach-light));
-      transition: left 0.3s ease, right 0.3s ease;
-    }
-
-    nav button:hover { color: var(--cream); }
-    nav button:hover::after { left: 10%; right: 10%; }
-    nav button.active { color: var(--peach); }
-    nav button.active::after { left: 10%; right: 10%; }
-    nav button + button { border-left: 1px solid rgba(46,74,114,0.45); }
-
-    /* ── MAIN CONTENT ── */
-    main {
-      position: relative;
-      z-index: 5;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 60px 24px 80px;
-    }
-
-    .tab-panel { display: none; animation: fadeInUp 0.5s ease forwards; }
-    .tab-panel.active { display: block; }
-
-    /* ── HOME PAGE ── */
-    .home-hero {
-      text-align: center;
-      padding: 20px 0 60px;
-    }
-
-    .gothic-frame {
-      display: inline-block;
-      position: relative;
-      padding: 50px 60px;
-      margin: 10px auto;
-      background: linear-gradient(135deg, rgba(18,32,58,0.92) 0%, rgba(11,18,32,0.96) 100%);
-      border: 1px solid var(--navy-border);
-      box-shadow:
-        inset 0 0 60px rgba(244,165,122,0.06),
-        0 0 60px rgba(0,0,0,0.7),
-        0 0 0 1px rgba(244,165,122,0.08);
-    }
-
-    /* Corner stars */
-    .gothic-frame::before,
-    .gothic-frame::after {
-      content: '★';
-      position: absolute;
-      color: var(--peach);
-      font-size: 0.85rem;
-      opacity: 0.55;
-    }
-    .gothic-frame::before { top: 12px; left: 16px; }
-    .gothic-frame::after  { bottom: 12px; right: 16px; }
-
-    .frame-corner-tr, .frame-corner-bl {
-      position: absolute;
-      color: var(--peach);
-      font-size: 0.85rem;
-      opacity: 0.55;
-    }
-    .frame-corner-tr { top: 12px; right: 16px; }
-    .frame-corner-bl { bottom: 12px; left: 16px; }
-
-    /* Mini sun inside frame */
-    .frame-sun {
-      display: block;
-      margin: 0 auto 14px;
-      width: 48px;
-      height: 48px;
-      opacity: 0.7;
-    }
-
-    .home-names {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(2rem, 6vw, 3.8rem);
-      color: var(--cream);
-      line-height: 1.2;
-      text-shadow: 0 0 30px rgba(244,165,122,0.2);
-      margin-bottom: 8px;
-    }
-
-    .home-location {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(0.8rem, 2.5vw, 1.1rem);
-      color: var(--peach-light);
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      margin-top: 14px;
-    }
-
-    .home-tagline {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--muted);
-      margin-top: 28px;
+      font-size: 0.97rem;
       line-height: 1.7;
+      position: relative;
     }
-
-    /* star strip between frame and cards */
-    .star-strip {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin: 44px auto 44px;
-      color: var(--peach);
-      font-size: 0.8rem;
-      opacity: 0.5;
-      letter-spacing: 0.4em;
-    }
-    .star-strip::before,
-    .star-strip::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--navy-border), var(--peach-light), var(--navy-border), transparent);
-    }
+    .notice-banner::before { content:'☀'; position:absolute; top:12px; right:14px; color:var(--peach); opacity:0.4; font-size:1rem; }
 
     /* ── CARDS ── */
-    .page-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(1.4rem, 4vw, 2.2rem);
-      color: var(--cream);
-      text-align: center;
-      margin-bottom: 10px;
-      letter-spacing: 0.08em;
-    }
+    .page-title { font-family:'Cinzel Decorative',serif; font-size:clamp(1.4rem,4vw,2.2rem); color:var(--cream); text-align:center; margin-bottom:10px; letter-spacing:0.08em; }
+    .page-ornament { text-align:center; color:var(--peach); font-size:1rem; margin-bottom:40px; opacity:0.65; letter-spacing:0.6em; }
 
-    .page-ornament {
-      text-align: center;
-      color: var(--peach);
-      font-size: 1rem;
-      margin-bottom: 40px;
-      opacity: 0.65;
-      letter-spacing: 0.6em;
-    }
+    .card { background:linear-gradient(135deg,rgba(18,32,58,0.88),rgba(11,18,32,0.92)); border:1px solid var(--navy-border); padding:36px 40px; margin-bottom:24px; position:relative; box-shadow:0 4px 24px rgba(0,0,0,0.4),inset 0 0 30px rgba(244,165,122,0.03); }
+    .card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--blush),var(--peach-light),var(--blush),transparent); opacity:0.55; }
+    .card::after { content:'✦'; position:absolute; top:10px; right:14px; color:var(--peach); font-size:0.65rem; opacity:0.35; }
+    .card h3 { font-family:'Cinzel',serif; font-size:0.8rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--peach); margin-bottom:14px; }
+    .card p,.card address { color:var(--muted); line-height:1.8; font-size:1rem; font-style:normal; }
+    .card a { color:var(--peach-light); text-decoration:none; border-bottom:1px solid rgba(244,165,122,0.3); transition:color 0.2s,border-color 0.2s; }
+    .card a:hover { color:var(--cream); border-color:var(--peach); }
+    .venue-label { font-family:'Cinzel',serif; font-size:1.05rem; color:var(--peach-light); letter-spacing:0.1em; margin-bottom:6px; display:block; }
+    .placeholder-note { text-align:center; font-style:italic; color:var(--blush); opacity:0.6; font-size:0.9rem; margin-top:40px; }
 
-    .card {
-      background: linear-gradient(135deg, rgba(18,32,58,0.88), rgba(11,18,32,0.92));
-      border: 1px solid var(--navy-border);
-      padding: 36px 40px;
-      margin-bottom: 24px;
-      position: relative;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.4), inset 0 0 30px rgba(244,165,122,0.03);
-    }
+    /* ── SCHEDULE ── */
+    .schedule-date { font-family:'Cinzel',serif; font-size:1rem; color:var(--peach); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:20px; display:flex; align-items:center; gap:12px; }
+    .schedule-date::before,.schedule-date::after { content:''; flex:1; height:1px; background:linear-gradient(to right,transparent,var(--navy-border)); }
+    .timeline { list-style:none; padding:0; }
+    .timeline li { display:flex; gap:20px; margin-bottom:22px; align-items:flex-start; }
+    .timeline-time { font-family:'Cinzel',serif; font-size:0.75rem; letter-spacing:0.15em; color:var(--peach-light); white-space:nowrap; min-width:80px; padding-top:3px; }
+    .timeline-dot { width:10px; height:10px; border-radius:50%; background:var(--peach); flex-shrink:0; margin-top:5px; box-shadow:0 0 8px rgba(244,165,122,0.5); }
+    .timeline-text { color:var(--muted); line-height:1.7; font-size:1rem; }
+    .timeline-text strong { color:var(--text); font-style:normal; font-weight:normal; font-family:'Cinzel',serif; font-size:0.85rem; letter-spacing:0.1em; display:block; margin-bottom:2px; }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--blush), var(--peach-light), var(--blush), transparent);
-      opacity: 0.55;
+    /* ── FAQ ACCORDION ── */
+    .faq-item { margin-bottom:12px; }
+    .faq-question {
+      width:100%; background:linear-gradient(135deg,rgba(18,32,58,0.88),rgba(11,18,32,0.92));
+      border:1px solid var(--navy-border); padding:20px 40px 20px 24px;
+      color:var(--peach-light); font-family:'Cinzel',serif; font-size:0.78rem;
+      letter-spacing:0.2em; text-transform:uppercase; text-align:left;
+      cursor:pointer; position:relative; transition:color 0.3s, background 0.3s;
     }
+    .faq-question::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--blush),var(--peach-light),var(--blush),transparent); opacity:0.4; }
+    .faq-question::after { content:'✦'; position:absolute; right:18px; top:50%; transform:translateY(-50%) rotate(0deg); color:var(--peach); font-size:0.7rem; transition:transform 0.3s; }
+    .faq-question.open { color:var(--cream); background:linear-gradient(135deg,rgba(26,47,82,0.92),rgba(18,32,58,0.96)); }
+    .faq-question.open::after { transform:translateY(-50%) rotate(45deg); }
+    .faq-question:hover { color:var(--cream); }
+    .faq-answer { display:none; background:linear-gradient(135deg,rgba(11,18,32,0.92),rgba(11,18,32,0.96)); border:1px solid var(--navy-border); border-top:none; padding:22px 28px; color:var(--muted); line-height:1.8; font-size:1rem; }
+    .faq-answer.open { display:block; animation:fadeInUp 0.3s ease forwards; }
 
-    /* star in card top-right corner */
-    .card::after {
-      content: '✦';
-      position: absolute;
-      top: 10px; right: 14px;
-      color: var(--peach);
-      font-size: 0.65rem;
-      opacity: 0.35;
+    /* ── MERCH ── */
+    .merch-card {
+      background:linear-gradient(135deg,rgba(18,32,58,0.88),rgba(11,18,32,0.92));
+      border:1px solid var(--navy-border); padding:36px 40px; margin-bottom:24px;
+      position:relative; box-shadow:0 4px 24px rgba(0,0,0,0.4);
+      text-align:center;
     }
-
-    .card h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--peach);
-      margin-bottom: 14px;
-    }
-
-    .card p, .card address {
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 1rem;
-      font-style: normal;
-    }
-
-    .card a {
-      color: var(--peach-light);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(244,165,122,0.3);
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .card a:hover { color: var(--cream); border-color: var(--peach); }
-
-    .venue-label {
-      font-family: 'Cinzel', serif;
-      font-size: 1.05rem;
-      color: var(--peach-light);
-      letter-spacing: 0.1em;
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    .placeholder-note {
-      text-align: center;
-      font-style: italic;
-      color: var(--blush);
-      opacity: 0.6;
-      font-size: 0.9rem;
-      margin-top: 40px;
-    }
+    .merch-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--blush),var(--peach-light),var(--blush),transparent); opacity:0.55; }
+    .merch-price { font-family:'Cinzel',serif; font-size:1.6rem; color:var(--peach); margin:16px 0; letter-spacing:0.1em; }
+    .merch-btn { display:inline-block; margin-top:20px; padding:14px 36px; background:linear-gradient(135deg,var(--blush),var(--peach)); color:var(--navy-deep); font-family:'Cinzel',serif; font-size:0.75rem; letter-spacing:0.25em; text-transform:uppercase; text-decoration:none; border:none; cursor:pointer; transition:opacity 0.2s, transform 0.2s; }
+    .merch-btn:hover { opacity:0.85; transform:translateY(-2px); }
+    .merch-note { font-style:italic; color:var(--blush); font-size:0.9rem; margin-top:16px; opacity:0.8; }
 
     /* ── FOOTER ── */
-    footer {
-      position: relative;
-      z-index: 5;
-      text-align: center;
-      padding: 30px 20px 50px;
-      border-top: 1px solid var(--navy-border);
-    }
-
-    .footer-stars {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      color: var(--peach);
-      font-size: 0.75rem;
-      opacity: 0.4;
-      letter-spacing: 0.4em;
-    }
-
-    footer p {
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--navy-border);
-    }
+    footer { position:relative; z-index:5; text-align:center; padding:30px 20px 50px; border-top:1px solid var(--navy-border); }
+    .footer-stars { display:flex; justify-content:center; gap:10px; margin-bottom:12px; color:var(--peach); font-size:0.75rem; opacity:0.4; letter-spacing:0.4em; }
+    footer p { font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--navy-border); }
 
     /* ── ANIMATIONS ── */
-    @keyframes fadeIn      { from { opacity:0 } to { opacity:1 } }
-    @keyframes fadeInDown  { from { opacity:0; transform:translateY(-20px) } to { opacity:1; transform:translateY(0) } }
-    @keyframes fadeInUp    { from { opacity:0; transform:translateY(16px)  } to { opacity:1; transform:translateY(0) } }
+    @keyframes fadeIn     { from{opacity:0} to{opacity:1} }
+    @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeInUp   { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      .gothic-frame { padding: 32px 24px; }
-      .sun-motif { width: 68px; height: 68px; }
-      nav button { font-size: 0.58rem; padding: 14px 9px; letter-spacing: 0.12em; }
+    @media (max-width:600px) {
+      .gothic-frame { padding:32px 24px; }
+      .sun-motif { width:68px; height:68px; }
+      nav button { font-size:0.55rem; padding:13px 8px; letter-spacing:0.1em; }
+      .card { padding:24px 20px; }
     }
   </style>
 </head>
 <body>
 
-<!-- Scattered twinkling stars -->
 <div class="star-field" aria-hidden="true">
-  <span style="top:7%;  left:4%;  --dur:3.8s; --delay:0.2s;  --max-op:0.55;">✦</span>
-  <span style="top:12%; left:91%; --dur:5.1s; --delay:1.1s;  --max-op:0.45;">★</span>
-  <span style="top:3%;  left:55%; --dur:4.2s; --delay:0.7s;  --max-op:0.4;">✦</span>
-  <span style="top:18%; left:78%; --dur:6s;   --delay:2s;    --max-op:0.5;">✦</span>
-  <span style="top:22%; left:20%; --dur:3.4s; --delay:0.4s;  --max-op:0.4;">★</span>
-  <span style="top:30%; left:96%; --dur:5.5s; --delay:1.6s;  --max-op:0.35;">✦</span>
-  <span style="top:38%; left:2%;  --dur:4.7s; --delay:0.9s;  --max-op:0.4;">★</span>
-  <span style="top:50%; left:93%; --dur:3.9s; --delay:2.3s;  --max-op:0.3;">✦</span>
-  <span style="top:62%; left:5%;  --dur:5.2s; --delay:1.4s;  --max-op:0.35;">✦</span>
-  <span style="top:70%; left:88%; --dur:4.4s; --delay:0.6s;  --max-op:0.4;">★</span>
-  <span style="top:80%; left:10%; --dur:6.1s; --delay:3.1s;  --max-op:0.3;">✦</span>
-  <span style="top:88%; left:80%; --dur:3.6s; --delay:1.8s;  --max-op:0.45;">✦</span>
-  <span style="top:94%; left:45%; --dur:5.8s; --delay:0.3s;  --max-op:0.3;">★</span>
+  <span style="top:7%;left:4%;--dur:3.8s;--delay:0.2s;--max-op:0.55;">✦</span>
+  <span style="top:12%;left:91%;--dur:5.1s;--delay:1.1s;--max-op:0.45;">★</span>
+  <span style="top:3%;left:55%;--dur:4.2s;--delay:0.7s;--max-op:0.4;">✦</span>
+  <span style="top:18%;left:78%;--dur:6s;--delay:2s;--max-op:0.5;">✦</span>
+  <span style="top:22%;left:20%;--dur:3.4s;--delay:0.4s;--max-op:0.4;">★</span>
+  <span style="top:30%;left:96%;--dur:5.5s;--delay:1.6s;--max-op:0.35;">✦</span>
+  <span style="top:38%;left:2%;--dur:4.7s;--delay:0.9s;--max-op:0.4;">★</span>
+  <span style="top:50%;left:93%;--dur:3.9s;--delay:2.3s;--max-op:0.3;">✦</span>
+  <span style="top:62%;left:5%;--dur:5.2s;--delay:1.4s;--max-op:0.35;">✦</span>
+  <span style="top:70%;left:88%;--dur:4.4s;--delay:0.6s;--max-op:0.4;">★</span>
+  <span style="top:80%;left:10%;--dur:6.1s;--delay:3.1s;--max-op:0.3;">✦</span>
+  <span style="top:88%;left:80%;--dur:3.6s;--delay:1.8s;--max-op:0.45;">✦</span>
+  <span style="top:94%;left:45%;--dur:5.8s;--delay:0.3s;--max-op:0.3;">★</span>
 </div>
 
-<!-- TOP BANNER -->
 <header class="top-banner">
-
-  <!-- Rotating sun SVG -->
   <svg class="sun-motif" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <!-- rays -->
     <g stroke="#f4a57a" stroke-width="2" stroke-linecap="round" opacity="0.85">
       <line x1="50" y1="4"  x2="50" y2="15"/>
       <line x1="50" y1="85" x2="50" y2="96"/>
@@ -475,7 +225,6 @@
       <line x1="77.2" y1="77.2" x2="84.9" y2="84.9"/>
       <line x1="84.9" y1="15.1" x2="77.2" y2="22.8"/>
       <line x1="22.8" y1="77.2" x2="15.1" y2="84.9"/>
-      <!-- half-rays -->
       <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(22.5,50,50)"/>
       <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(67.5,50,50)"/>
       <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(112.5,50,50)"/>
@@ -485,20 +234,16 @@
       <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(292.5,50,50)"/>
       <line x1="50" y1="7"  x2="50" y2="13" transform="rotate(337.5,50,50)"/>
     </g>
-    <!-- face circle -->
     <circle cx="50" cy="50" r="18" fill="none" stroke="#f9c4a8" stroke-width="1.5" opacity="0.9"/>
     <circle cx="50" cy="50" r="13" fill="rgba(244,165,122,0.15)" stroke="#f4a57a" stroke-width="1"/>
-    <!-- small star center -->
     <text x="50" y="55" text-anchor="middle" font-size="12" fill="#f9c4a8" opacity="0.9" font-family="serif">✦</text>
   </svg>
-
   <div class="star-row">★ ✦ ★ ✦ ★</div>
   <h1 class="couple-names">Leah <span class="ampersand">&amp;</span> Jonas</h1>
   <p class="location">Portland, Oregon</p>
   <div class="divider-star">☀ ✦ ☀</div>
 </header>
 
-<!-- NAVIGATION -->
 <nav>
   <div class="nav-inner">
     <button class="active" onclick="showTab('home',this)">Home</button>
@@ -509,10 +254,10 @@
     <button onclick="showTab('faqs',this)">FAQs</button>
     <button onclick="showTab('registry',this)">Registry</button>
     <button onclick="showTab('rsvp',this)">RSVP</button>
+    <button onclick="showTab('merch',this)">Merch</button>
   </div>
 </nav>
 
-<!-- MAIN -->
 <main>
 
   <!-- HOME -->
@@ -521,8 +266,6 @@
       <div class="gothic-frame">
         <span class="frame-corner-tr">★</span>
         <span class="frame-corner-bl">★</span>
-
-        <!-- Mini sun in frame -->
         <svg class="frame-sun" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <g stroke="#f4a57a" stroke-width="2.5" stroke-linecap="round" opacity="0.8">
             <line x1="50" y1="6"  x2="50" y2="18"/>
@@ -537,7 +280,6 @@
           <circle cx="50" cy="50" r="16" fill="none" stroke="#f9c4a8" stroke-width="1.5" opacity="0.85"/>
           <circle cx="50" cy="50" r="10" fill="rgba(244,165,122,0.2)" stroke="#f4a57a" stroke-width="1"/>
         </svg>
-
         <h2 class="home-names">Leah<br><span class="ampersand" style="font-size:0.6em;letter-spacing:0.1em;">&amp;</span><br>Jonas</h2>
         <p class="home-location">McMenamins Edgefield · Troutdale, Oregon</p>
         <p class="home-tagline">
@@ -548,7 +290,11 @@
 
       <div class="star-strip">★ ✦ ☀ ✦ ★</div>
 
-      <div style="max-width:600px; margin:0 auto;">
+      <div style="max-width:640px;margin:0 auto;">
+        <div class="notice-banner">
+          Please check back regularly as we might make minor schedule adjustments or add additional information for the wedding day. We are so excited to have you celebrate with us!
+        </div>
+
         <div class="card">
           <h3>Welcome</h3>
           <p>We are so delighted to share this moment with you. Please explore the site to find everything you need — from travel arrangements to our gift registry — and do not hesitate to reach out with any questions.</p>
@@ -583,12 +329,29 @@
     <h2 class="page-title">Schedule</h2>
     <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
     <div class="card">
-      <h3>Ceremony</h3>
-      <p>Date, time, and location details to be announced. We look forward to celebrating with you at McMenamins Edgefield.</p>
-    </div>
-    <div class="card">
-      <h3>Reception</h3>
-      <p>Dinner, dancing, and festivities will follow the ceremony in the grounds of Edgefield. Full details coming soon.</p>
+      <div class="schedule-date">Thursday, June 18</div>
+      <ul class="timeline">
+        <li>
+          <span class="timeline-time">5:00 pm</span>
+          <div class="timeline-dot"></div>
+          <div class="timeline-text"><strong>Ceremony</strong>Blackberry Garden</div>
+        </li>
+        <li>
+          <span class="timeline-time">5:30 pm</span>
+          <div class="timeline-dot"></div>
+          <div class="timeline-text"><strong>Cocktail Hour</strong>Blackberry Hall</div>
+        </li>
+        <li>
+          <span class="timeline-time">6:30 pm</span>
+          <div class="timeline-dot"></div>
+          <div class="timeline-text"><strong>Reception &amp; Dinner</strong>Dancing and cake to follow — celebrating until 10:00 pm</div>
+        </li>
+        <li>
+          <span class="timeline-time">10:00 pm</span>
+          <div class="timeline-dot"></div>
+          <div class="timeline-text"><strong>End of Evening</strong>Thank you for celebrating with us ✦</div>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -602,11 +365,16 @@
     </div>
     <div class="card">
       <h3>Staying On-Site</h3>
-      <p>Edgefield has its own hotel on the property — a beautiful historic manor. We highly recommend booking a room to make a full weekend of it. We have reserved a room block; booking details and rate code will be shared soon.</p>
+      <p>We have reserved a room block with limited space on the premises. To reserve a room, please call the front desk at <a href="tel:5036698610">(503) 669-8610</a> and tell them <em>"This is for the wedding of Leah Batterson"</em> when making the reservation.</p>
+      <p style="margin-top:10px;">There will be rooms with a king bed option and a queen bed option. Please be aware these are individual bedrooms, but private bathrooms are available in the hallway.</p>
+    </div>
+    <div class="card">
+      <h3>Additional Places to Stay</h3>
+      <p><strong style="color:var(--peach-light);">Troutdale:</strong> <a href="https://www.bestwestern.com/en_US/book/hotel-rooms.38140.html?iata=00171880&ssob=BLBWI0004G&cid=BLBWI0004G:google:gmb:38140" target="_blank" rel="noopener">Best Western</a></p>
     </div>
     <div class="card">
       <h3>Parking</h3>
-      <p>Complimentary parking is available on-site at Edgefield. Additional details will be posted here as we finalise logistics.</p>
+      <p>Complimentary parking is available on-site at Edgefield. Please drive responsibly!</p>
     </div>
   </section>
 
@@ -615,8 +383,14 @@
     <h2 class="page-title">Things To Do</h2>
     <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
     <div class="card">
-      <h3>Edgefield Grounds</h3>
-      <p>Wander the 74-acre estate — visit the winery, brewery, distillery, soaking pool, and cinema. There is no shortage of ways to spend a sunny Oregon afternoon on property.</p>
+      <h3>On the Edgefield Grounds</h3>
+      <p>McMenamins Edgefield has a lot of fun activities on the premises — feel free to show up early and enjoy at your own leisure! Things to enjoy include:</p>
+      <ul style="margin-top:14px;padding-left:20px;color:var(--muted);line-height:2;">
+        <li>Soaking Pool</li>
+        <li>Golf Course</li>
+        <li>Theater</li>
+        <li>Lots of Restaurants and Bars</li>
+      </ul>
     </div>
     <div class="card">
       <h3>Explore the Columbia River Gorge</h3>
@@ -624,7 +398,7 @@
     </div>
     <div class="card">
       <h3>Explore Portland</h3>
-      <p>Portland is a city of forests, food, and peculiar charm. Wander Powell's Books, stroll the Japanese Garden, or lose an afternoon in the Pearl District.</p>
+      <p>The Portland area has many fun amenities to see and do. Wander Powell's Books, stroll the Japanese Garden, lose an afternoon in the Pearl District — and make sure to get a delicious Voodoo Doughnut!</p>
     </div>
   </section>
 
@@ -632,21 +406,55 @@
   <section id="tab-faqs" class="tab-panel">
     <h2 class="page-title">FAQs</h2>
     <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
-    <div class="card">
-      <h3>What is the dress code?</h3>
-      <p>Formal or semi-formal attire. We welcome soft, romantic tones — blush, peach, navy, and ivory are all very much at home here.</p>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">What is the dress code?</button>
+      <div class="faq-answer">Formal. Men should wear a suit and tie, and women should wear a cocktail dress or floor-length formal dress. Please be aware that the wedding party will be wearing peach dresses and navy blue ties.</div>
     </div>
-    <div class="card">
-      <h3>Are children welcome?</h3>
-      <p>We love your little ones, but the ceremony and reception are adults-only events. We hope you'll treat the evening as a rare night out.</p>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Are plus ones allowed?</button>
+      <div class="faq-answer">When you go to RSVP, you will be given the option to add a plus one — otherwise, the people specified on your invitation will be listed.</div>
     </div>
-    <div class="card">
-      <h3>Will there be parking?</h3>
-      <p>Yes — complimentary parking is available on-site at McMenamins Edgefield.</p>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">What if I have dietary restrictions?</button>
+      <div class="faq-answer">When you go to RSVP, you will have the option to choose your meal, which strives to accommodate all dietary restrictions.</div>
     </div>
-    <div class="card">
-      <h3>Can I stay at Edgefield?</h3>
-      <p>Absolutely, and we encourage it! The historic hotel on property is a wonderful experience. Watch for our room block details in your formal invitation.</p>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Are children allowed?</button>
+      <div class="faq-answer">Yes! We love our family and friends with their little ones and they are welcomed to attend ❤</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Is there parking at the venue?</button>
+      <div class="faq-answer">There is parking available on site! Please drive responsibly.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">How will the bar work?</button>
+      <div class="faq-answer">During the reception there will be an open bar for 5 hours — from 5:00–10:00 pm. Before the ceremony and reception, there are bars and restaurants available on the property for you to enjoy at your leisure!</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Will the event be outdoors or indoors?</button>
+      <div class="faq-answer">The ceremony will be outdoors, with the reception being indoors. Oregon weather in June tends to be around 70°F in the day and 50°F at night, so it should be comfortable for all to enjoy. However, please check the weather and plan to bring any layers accordingly.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">What time should I arrive?</button>
+      <div class="faq-answer">For people living and staying in the Portland area, be aware it takes a minimum of 40 minutes to get to the venue. Please plan to leave at least an hour ahead of the time you wish to arrive, to allow ample time for parking and seating.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Help locating the ceremony area</button>
+      <div class="faq-answer">Please be aware the McMenamins property is quite large! If you need help locating the specific ceremony location, you can ask for a map or help from the front desk and they will gladly point you in the right direction.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Can I take pictures?</button>
+      <div class="faq-answer">Taking pictures is encouraged!! Please take all the pictures you want — and make sure to share them with us afterwards!</div>
     </div>
   </section>
 
@@ -656,7 +464,7 @@
     <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
     <div class="card">
       <h3>Our Wishes</h3>
-      <p>Your presence is the greatest gift of all. For those who wish to offer something more, we are registered at a selection of shops we'll be linking here shortly.</p>
+      <p>Your presence is the greatest gift of all. However, if you'd like to get us a gift, you will have the option to choose from the registry linked below, or bring a gift the day of.</p>
     </div>
     <p class="placeholder-note">— Registry links coming soon —</p>
   </section>
@@ -672,9 +480,22 @@
     <p class="placeholder-note">— RSVP form coming soon —</p>
   </section>
 
+  <!-- MERCH -->
+  <section id="tab-merch" class="tab-panel">
+    <h2 class="page-title">Merch</h2>
+    <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
+    <div class="merch-card card">
+      <h3>Custom Wedding T-Shirt</h3>
+      <p>We have made a Leah &amp; Jonas custom wedding shirt to celebrate the occasion!</p>
+      <div class="merch-price">$35</div>
+      <p>Preorder yours using the link below — we'd love to see you repping the occasion!</p>
+      <a class="merch-btn" href="https://www.deadanddetached.com/product/leah-jonas-custom-wedding-event-tshirt" target="_blank" rel="noopener">Preorder Now ✦</a>
+      <p class="merch-note">Please be aware shirts will be shipped in 4–6 weeks.</p>
+    </div>
+  </section>
+
 </main>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-stars">★ ✦ ☀ ✦ ★</div>
   <p>Leah &amp; Jonas &nbsp;·&nbsp; McMenamins Edgefield &nbsp;·&nbsp; Troutdale, Oregon</p>
@@ -686,6 +507,21 @@
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + id).classList.add('active');
     btn.classList.add('active');
+  }
+
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-question.open').forEach(q => {
+      q.classList.remove('open');
+      q.nextElementSibling.classList.remove('open');
+    });
+    // open clicked if it was closed
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.classList.add('open');
+    }
   }
 </script>
 </body>
