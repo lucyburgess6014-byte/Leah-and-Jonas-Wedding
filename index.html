@@ -134,7 +134,14 @@
     .frame-sun { display:block; margin:0 auto 14px; width:48px; height:48px; opacity:0.7; }
     .home-names { font-family:'Cinzel Decorative',serif; font-size:clamp(2rem,6vw,3.8rem); color:var(--cream); line-height:1.2; text-shadow:0 0 30px rgba(244,165,122,0.2); margin-bottom:8px; }
     .home-location { font-family:'Cinzel',serif; font-size:clamp(0.8rem,2.5vw,1.1rem); color:var(--peach-light); letter-spacing:0.4em; text-transform:uppercase; margin-top:14px; }
-    .home-tagline { font-family:'IM Fell English',serif; font-style:italic; font-size:1.05rem; color:var(--muted); margin-top:28px; line-height:1.7; }
+    .home-date {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.7rem, 2vw, 0.9rem);
+      color: var(--muted);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    } font-family:'IM Fell English',serif; font-style:italic; font-size:1.05rem; color:var(--muted); margin-top:28px; line-height:1.7; }
     .star-strip { display:flex; align-items:center; justify-content:center; gap:12px; margin:44px auto 44px; color:var(--peach); font-size:0.8rem; opacity:0.5; letter-spacing:0.4em; }
     .star-strip::before,.star-strip::after { content:''; display:block; width:80px; height:1px; background:linear-gradient(to right,transparent,var(--navy-border),var(--peach-light),var(--navy-border),transparent); }
 
@@ -411,6 +418,7 @@
         </svg>
         <h2 class="home-names">Leah<br><span class="ampersand" style="font-size:0.6em;letter-spacing:0.1em;">&amp;</span><br>Jonas</h2>
         <p class="home-location">McMenamins Edgefield · Troutdale, Oregon</p>
+        <p class="home-date">Thursday, June 18, 2026</p>
         <p class="home-tagline">
           Two souls, bound beneath the open sky,<br>
           among the gardens, stars, and candlelight.
@@ -599,7 +607,7 @@
 
     <div class="faq-item">
       <button class="faq-question" onclick="toggleFaq(this)">What time should I arrive?</button>
-      <div class="faq-answer">For people living and staying in the Portland area, be aware it takes a minimum of 40 minutes to get to the venue. Please plan to leave at least an hour ahead of the time you wish to arrive, to allow ample time for parking and seating.</div>
+      <div class="faq-answer">For people living and staying in the Portland area, be aware it takes a minimum of 40 minutes to get to the venue. Please plan to leave at least an hour ahead of the time you wish to arrive, to allow ample time for parking and seating. In general, please plan to be ready at the ceremony site about 30 minutes before the start time.</div>
     </div>
 
     <div class="faq-item">
