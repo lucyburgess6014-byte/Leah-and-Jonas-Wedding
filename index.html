@@ -394,6 +394,7 @@
     <button onclick="showTab('registry',this)">Registry</button>
     <button onclick="showTab('rsvp',this)">RSVP</button>
     <button onclick="showTab('merch',this)">Merch</button>
+    <button onclick="showTab('credits',this)">Photo Credits</button>
   </div>
 </nav>
 
@@ -486,12 +487,32 @@
       <img class="lightbox-img" id="lightbox-img" src="" alt=""/>
       <button class="lightbox-next" onclick="event.stopPropagation(); changePhoto(1)">&#8250;</button>
     </div>
+  </section>
 
-    <div class="card" style="margin-top:32px; text-align:center;">
-      <h3>Photo Credits</h3>
-      <p>Photo credits go to our amazing photographer friends.</p>
-      <p style="margin-top:14px;">The photos in color were done by <strong style="color:var(--peach-light);">Savannah Noel</strong> — <a href="https://www.instagram.com/2002bluez" target="_blank" rel="noopener">@2002bluez</a></p>
-      <p style="margin-top:10px;">The black and white photos were done by <strong style="color:var(--peach-light);">Ryleigh MacDonald</strong> — <a href="https://www.instagram.com/ryesphoto" target="_blank" rel="noopener">@ryesphoto</a></p>
+  <!-- PHOTO CREDITS -->
+  <section id="tab-credits" class="tab-panel">
+    <h2 class="page-title">Photo Credits</h2>
+    <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Color Photography — Savannah Noel</button>
+      <div class="faq-answer">
+        The photos in color were done by our amazing photographer friend <strong style="color:var(--peach-light);">Savannah Noel</strong>.<br><br>
+        Follow her work on Instagram: <a href="https://www.instagram.com/2002bluez" target="_blank" rel="noopener">@2002bluez</a>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Black &amp; White Photography — Ryleigh MacDonald</button>
+      <div class="faq-answer">
+        The black and white photos were done by our amazing photographer friend <strong style="color:var(--peach-light);">Ryleigh MacDonald</strong>.<br><br>
+        Follow her work on Instagram: <a href="https://www.instagram.com/ryesphoto" target="_blank" rel="noopener">@ryesphoto</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px; text-align:center;">
+      <h3>A Note of Thanks</h3>
+      <p>Photo credits go to our amazing photographer friends. We are so grateful for their talent and for capturing these moments so beautifully.</p>
     </div>
   </section>
 
