@@ -8,9 +8,13 @@
   <meta http-equiv="x-dns-prefetch-control" content="on"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <!-- Preload first two photos -->
+  <!-- Preload all gallery photos for instant display -->
   <link rel="preload" as="image" href="leah-jonas-1.jpg" fetchpriority="high"/>
   <link rel="preload" as="image" href="leah-jonas-2.jpg" fetchpriority="high"/>
+  <link rel="preload" as="image" href="leah-jonas-3.jpg" fetchpriority="low"/>
+  <link rel="preload" as="image" href="leah-jonas-4.jpg" fetchpriority="low"/>
+  <link rel="preload" as="image" href="leah-jonas-5.jpg" fetchpriority="low"/>
+  <link rel="preload" as="image" href="leah-jonas-6.jpg" fetchpriority="low"/>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -451,16 +455,16 @@
         <img src="leah-jonas-2.jpg" alt="Leah and Jonas" loading="eager" decoding="async" fetchpriority="high" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw"/>
       </div>
       <div class="gallery-item">
-        <img src="leah-jonas-3.jpg" alt="Leah and Jonas" loading="lazy" decoding="async" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw"/>
+        <img src="leah-jonas-3.jpg" alt="Leah and Jonas" loading="eager" decoding="async" fetchpriority="low" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw"/>
       </div>
       <div class="gallery-item">
-        <img src="leah-jonas-4.jpg" alt="Leah and Jonas" loading="lazy" decoding="async" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw"/>
+        <img src="leah-jonas-4.jpg" alt="Leah and Jonas" loading="eager" decoding="async" fetchpriority="low" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw"/>
       </div>
       <div class="gallery-item">
-        <img src="leah-jonas-5.jpg" alt="Leah and Jonas" loading="lazy" decoding="async" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw"/>
+        <img src="leah-jonas-5.jpg" alt="Leah and Jonas" loading="eager" decoding="async" fetchpriority="low" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw"/>
       </div>
       <div class="gallery-item">
-        <img src="leah-jonas-6.jpg" alt="Leah and Jonas" loading="lazy" decoding="async" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw"/>
+        <img src="leah-jonas-6.jpg" alt="Leah and Jonas" loading="eager" decoding="async" fetchpriority="low" sizes="(max-width:600px) 100vw, (max-width:900px) 50vw, 33vw"/>
       </div>
     </div>
 
@@ -616,8 +620,10 @@
     <div class="card">
       <h3>Our Wishes</h3>
       <p>Your presence is the greatest gift of all. However, if you'd like to get us a gift, you will have the option to choose from the registry linked below, or bring a gift the day of.</p>
+      <div style="text-align:center; margin-top:28px;">
+        <a class="merch-btn" href="https://www.zola.com/registry/jonasandleah" target="_blank" rel="noopener">View Our Registry ✦</a>
+      </div>
     </div>
-    <p class="placeholder-note">— Registry links coming soon —</p>
   </section>
 
   <!-- RSVP -->
@@ -626,7 +632,7 @@
     <div class="page-ornament">★ ✦ ☀ ✦ ★</div>
     <div class="card">
       <h3>Kindly Reply</h3>
-      <p>We ask that you respond by the date noted on your formal invitation. Please click the button below to RSVP — you'll be able to select your meal preference, add a plus one if applicable, and note any dietary restrictions.</p>
+      <p>We kindly ask that you RSVP by <strong style="color:var(--peach-light);">June 1st</strong>. Please click the button below to RSVP — you'll be able to select your meal preference and add a plus one if applicable.</p>
       <div style="text-align:center; margin-top:28px;">
         <a class="merch-btn" href="https://www.zola.com/wedding/jonasandleah/rsvp" target="_blank" rel="noopener">RSVP Here ✦</a>
       </div>
