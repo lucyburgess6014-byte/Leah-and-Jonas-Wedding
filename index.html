@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Leah & Jonas — Portland, Oregon</title>
+  <!-- Preload first two photos so they appear instantly when Photos tab opens -->
+  <link rel="preload" as="image" href="leah-jonas-1.jpg"/>
+  <link rel="preload" as="image" href="leah-jonas-2.jpg"/>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -434,22 +437,22 @@
 
     <div class="gallery-grid">
       <div class="gallery-item">
-        <img src="leah-jonas-1.jpg" alt="Leah and Jonas" loading="lazy"/>
+        <img src="leah-jonas-1.jpg" alt="Leah and Jonas" loading="eager" decoding="async" fetchpriority="high"/>
       </div>
       <div class="gallery-item">
-        <img src="leah-jonas-2.jpg" alt="Leah and Jonas" loading="lazy"/>
+        <img src="leah-jonas-2.jpg" alt="Leah and Jonas" loading="eager" decoding="async" fetchpriority="high"/>
       </div>
       <div class="gallery-item">
-        <img src="leah-jonas-3.jpg" alt="Leah and Jonas" loading="lazy"/>
+        <img src="leah-jonas-3.jpg" alt="Leah and Jonas" loading="lazy" decoding="async"/>
       </div>
       <div class="gallery-item">
-        <img src="leah-jonas-4.jpg" alt="Leah and Jonas" loading="lazy"/>
+        <img src="leah-jonas-4.jpg" alt="Leah and Jonas" loading="lazy" decoding="async"/>
       </div>
       <div class="gallery-item">
-        <img src="leah-jonas-5.jpg" alt="Leah and Jonas" loading="lazy"/>
+        <img src="leah-jonas-5.jpg" alt="Leah and Jonas" loading="lazy" decoding="async"/>
       </div>
       <div class="gallery-item">
-        <img src="leah-jonas-6.jpg" alt="Leah and Jonas" loading="lazy"/>
+        <img src="leah-jonas-6.jpg" alt="Leah and Jonas" loading="lazy" decoding="async"/>
       </div>
     </div>
 
